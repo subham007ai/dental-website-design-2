@@ -1,37 +1,38 @@
 import Link from 'next/link';
-import { IconDental } from '@tabler/icons-react';
 import { site } from '@/lib/site';
 
 type LogoProps = {
-  /** Dark footer variant uses lighter text on the navy background. */
+  /** Dark variant renders the lockup in cream for use on the ink footer. */
   variant?: 'light' | 'dark';
   className?: string;
 };
 
+/**
+ * Utkal Dental Care wordmark — geometric Poppins lockup, rendered as live text
+ * (transparent, infinitely scalable, theme-aware). The accent dot carries the
+ * vermilion brand colour; a tracked sub-line spells out the specialities.
+ */
 export default function Logo({ variant = 'light', className = '' }: LogoProps) {
-  const name = variant === 'dark' ? 'text-white' : 'text-navy';
-  const sub = variant === 'dark' ? 'text-[#8FA89B]' : 'text-slate';
-
+  const dark = variant === 'dark';
   return (
     <Link
       href="/"
-      className={`flex items-center gap-[10px] shrink-0 ${className}`}
       aria-label={`${site.name} — home`}
+      className={`inline-flex shrink-0 flex-col leading-none ${className}`}
     >
-      <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[12px] bg-green text-white">
-        <IconDental size={21} stroke={1.75} />
+      <span
+        className={`font-brand text-[23px] font-extrabold uppercase tracking-[-.045em] ${
+          dark ? 'text-cream' : 'text-ink'
+        }`}
+      >
+        Utkal<span className="text-clay">.</span>
       </span>
-      <span className="flex flex-col">
-        <span
-          className={`font-display text-[19px] font-semibold leading-[1.05] whitespace-nowrap ${name}`}
-        >
-          {site.name}
-        </span>
-        <span
-          className={`mt-[3px] text-[9.5px] font-semibold uppercase tracking-[2.5px] whitespace-nowrap ${sub}`}
-        >
-          {site.tagline}
-        </span>
+      <span
+        className={`mt-[4px] text-[8px] font-bold uppercase tracking-[.36em] ${
+          dark ? 'text-[#9E978A]' : 'text-slate'
+        }`}
+      >
+        Dental · Skin · Hair
       </span>
     </Link>
   );

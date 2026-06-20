@@ -1,24 +1,22 @@
+import Image from 'next/image';
 import type { ReactNode } from 'react';
 
 type FrameProps = {
-  /** Corner caption describing the eventual image. */
-  label: string;
-  /** Tabler icon element shown centred as a placeholder. */
-  icon: ReactNode;
-  /** Use the terracotta/clay tint instead of the green tint. */
+  label?: string;
+  icon?: ReactNode;
   tone?: 'green' | 'clay';
   className?: string;
+  src?: string;
+  arch?: boolean;
 };
 
-/**
- * Image placeholder used until real WebP photography lands (Phase 5).
- * Soft radial-gradient panel with a corner label and a faded centre icon.
- */
 export default function Frame({
   label,
   icon,
   tone = 'green',
   className = '',
+  src,
+  arch = false,
 }: FrameProps) {
   const toneBg =
     tone === 'clay'
@@ -29,14 +27,34 @@ export default function Frame({
 
   return (
     <div
-      className={`relative flex items-center justify-center overflow-hidden border border-line ${toneBg} ${className}`}
+      className={`group relative flex items-center justify-center overflow-hidden fine-grid ${
+        src ? 'duotone' : ''
+      } ${arch ? 'arch-frame' : 'rounded-[20px]'} ${className}`}
     >
-      <span
-        className={`absolute left-[15px] top-[15px] text-[11px] font-semibold uppercase tracking-[1px] ${labelColor}`}
-      >
-        {label}
-      </span>
-      <span className={`text-[40px] ${iconColor}`}>{icon}</span>
+      {src ? (
+        <div className="absolute inset-0 w-full h-full">
+          <Image
+            src={src}
+            alt={label || 'Clinic visual'}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 920px) 100vw, 50vw"
+            unoptimized
+          />
+        </div>
+      ) : (
+        <>
+          <div className={`absolute inset-0 w-full h-full ${toneBg}`} />
+          {label && (
+            <span
+              className={`absolute left-[15px] top-[15px] text-[11px] font-semibold uppercase tracking-[1px] ${labelColor}`}
+            >
+              {label}
+            </span>
+          )}
+          {icon && <span className={`text-[40px] relative z-10 ${iconColor}`}>{icon}</span>}
+        </>
+      )}
     </div>
   );
 }

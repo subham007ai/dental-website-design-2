@@ -4,14 +4,16 @@ import type { ComponentProps, ReactNode } from 'react';
 type Variant = 'green' | 'clay' | 'ghost';
 
 const base =
-  'inline-flex items-center gap-[9px] font-semibold text-[15px] px-[26px] py-[14px] rounded-full cursor-pointer border-[1.5px] border-transparent whitespace-nowrap transition-[transform,background-color,border-color,color] duration-200 will-change-transform';
+  'inline-flex items-center justify-center gap-[9px] rounded-md border border-transparent px-5 py-3 text-[11px] font-bold uppercase tracking-[.12em] whitespace-nowrap cursor-pointer transition-[transform,background-color,border-color,color] duration-200 will-change-transform active:scale-[.97] active:translate-y-0';
 
 const variants: Record<Variant, string> = {
+  // Primary — editorial ink button
   green:
-    'bg-green text-white shadow-[0_8px_20px_rgba(31,107,87,.26)] hover:bg-greenDk hover:-translate-y-0.5',
-  clay: 'bg-clay text-white shadow-[0_8px_20px_rgba(200,118,90,.26)] hover:bg-clayDk hover:-translate-y-0.5',
+    'bg-ink text-cream hover:bg-[#2A2620] border-transparent hover:-translate-y-0.5 shadow-md',
+  // Accent — vermilion
+  clay: 'bg-clay text-white hover:bg-clayDk border-transparent hover:-translate-y-0.5 shadow-md',
   ghost:
-    'bg-white border-line text-navy hover:border-green hover:text-greenDk',
+    'bg-transparent border-ink/25 text-ink hover:border-ink hover:bg-ink hover:text-cream hover:-translate-y-0.5',
 };
 
 type CommonProps = {

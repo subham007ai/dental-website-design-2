@@ -42,11 +42,58 @@ export const site = {
   consultationFee: '₹400',
 } as const;
 
+export const doctor = {
+  name: 'Dr. Satyajit Sahu',
+  role: 'BDS, MDS · Associate Professor · Oral & Implant Surgeon',
+  yearsExperience: 17,
+} as const;
+
+export const stats = [
+  { to: 21, suffix: '+', label: 'Years since 2004' },
+  { to: 1, suffix: ' Lakh+', label: 'Patients treated' },
+  { to: 7000, suffix: '+', label: 'Implants placed' },
+  { value: '4.9', star: true, label: 'Patient rating' },
+] as const;
+
+export const faqs = [
+  {
+    q: 'How often should I visit the dentist?',
+    a: 'For most people a check-up and professional cleaning every 6 months is ideal. Routine visits let us catch cavities, gum disease and other problems early — before they need bigger, costlier treatment.',
+  },
+  {
+    q: 'Do you treat skin and hair as well as teeth?',
+    a: 'Yes. Utkal Dental Care is a multi-speciality clinic. Alongside complete family dentistry, our dermatology and aesthetic specialists handle skin conditions, laser, fillers, chemical peels and hair restoration (FUE/FUT and PRP).',
+  },
+  {
+    q: 'What should I do in a dental emergency?',
+    a: 'Call us straight away on 81447 99927. For a knocked-out tooth, keep it in milk and come in as soon as possible. We keep room for same-day emergencies during clinic hours.',
+  },
+  {
+    q: 'How much does a consultation cost?',
+    a: 'A consultation is just ₹400. After examining you, we explain your options with transparent pricing so you can decide at your own pace — no pressure and no unnecessary treatment.',
+  },
+  {
+    q: 'Are dental implants painful?',
+    a: 'Implant placement is done under local anaesthetic, so you should not feel pain during the procedure. Most patients manage afterwards with simple painkillers and are surprised how comfortable modern implant surgery is.',
+  },
+] as const;
+
+export const social = {
+  practo:
+    'https://www.practo.com/bhubaneswar/clinic/utkal-dental-care-airport',
+  facebook: 'https://www.facebook.com/UtkalDentalCare/',
+} as const;
+
+export const mapEmbed =
+  'https://www.google.com/maps?q=Utkal+Dental+Care+Maa+Sakti+Hospital+Bhubaneswar&output=embed';
+
 export const nav = [
   { label: 'Home', href: '/' },
   { label: 'About', href: '/about' },
   { label: 'Services', href: '/services' },
-  { label: 'Patient Education', href: '/patient-education' },
+  { label: 'Results', href: '/gallery' },
+  { label: 'Patient Info', href: '/patient-info' },
+  { label: 'Care Blog', href: '/blog' },
   { label: 'Contact', href: '/contact' },
 ] as const;
 

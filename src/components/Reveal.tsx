@@ -6,6 +6,8 @@ type RevealProps = {
   children: ReactNode;
   as?: ElementType;
   className?: string;
+  /** Entry direction: 'up' (default), 'left' or 'right' for alternating rhythm. */
+  from?: 'up' | 'left' | 'right';
   /** Run a one-shot callback the first time the element enters the viewport. */
   onReveal?: (el: HTMLElement) => void;
 };
@@ -18,8 +20,11 @@ export default function Reveal({
   children,
   as: Tag = 'div',
   className = '',
+  from = 'up',
   onReveal,
 }: RevealProps) {
+  const dir =
+    from === 'left' ? 'reveal-left' : from === 'right' ? 'reveal-right' : '';
   const ref = useRef<HTMLElement>(null);
 
   useEffect(() => {
@@ -44,7 +49,7 @@ export default function Reveal({
   }, [onReveal]);
 
   return (
-    <Tag ref={ref} className={`reveal ${className}`}>
+    <Tag ref={ref} className={`reveal ${dir} ${className}`}>
       {children}
     </Tag>
   );
